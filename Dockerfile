@@ -11,7 +11,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Install the packages we need. Avahi will be included
 RUN apt-get update && apt-get install -y \
 	cups \
-	cups-backend-bjnp \
 && rm -rf /var/lib/apt/lists/*
 
 # This will use port 631
