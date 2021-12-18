@@ -51,6 +51,8 @@ image.
 ## <a name="drun"></a> [Docker Run](#toc)
 To simply do a quick and dirty run of the cups/airprint container:
 ```
+$ docker build -t nikoogle/cups-airprint:latest .
+
 $ docker run \
        -d \
        --name=cups \
@@ -60,7 +62,7 @@ $ docker run \
        --device /dev/usb \
        -e CUPSADMIN="admin" \
        -e CUPSPASSWORD="password" \
-       tigerj/cups-airprint
+       nikoogle/cups-airprint:latest
 ```
 To stop the container simply run:
 ```
