@@ -36,7 +36,7 @@ Version CUPS 2.3.3op2, using Debian11-slim.
 # <a name="about"></a> [About](#toc)
 
 Modified copy of source code at:
-<https://github.com/quadportnick/docker-cups-airprint>
+<https://github.com/RagingTiger/cups-airprint>
 
 # <a name="intro"></a> [Intro](#toc)
 
@@ -48,7 +48,7 @@ The local Avahi will be utilized for advertising the printers on the network.
 
 The below commands reference a
 [Docker Manifest List](https://docs.docker.com/engine/reference/commandline/manifest/)
-at [`tigerj/cups-airprint`](https://hub.docker.com/r/tigerj/cups-airprint)
+at [`nikoogle/cups-airprint`](https://hub.docker.com/r/nikoogle/cups-airprint)
 built using Docker's
 [BuildKit](https://docs.docker.com/develop/develop-images/build_enhancements/).
 Simply running commands using this image will pull
@@ -63,7 +63,7 @@ image will not run.
 # <a name="start"></a> [Getting Started](#toc)
 
 This section will give an overview of the essential options/arguments to pass
-to docker to successfully run containers from the `tigerj/cups-airprint` docker
+to docker to successfully run containers from the `nikoogle/cups-airprint` docker
 image.
 
 ## <a name="drun"></a> [Docker Run](#toc)
@@ -119,7 +119,7 @@ Docker volumes
 
 * **Notes**: The `Dockerfile` explicitly sets volumes at `/config` and
 `/services` (see
-[these lines](https://github.com/RagingTiger/docker-cups-airprint/blob/2a30b6690a08262fb64375b74f07ab7b3f77ec4a/Dockerfile#L16-L17)).
+[these lines](https://github.com/nstankov-bg/cups-airprint/blob/2a30b6690a08262fb64375b74f07ab7b3f77ec4a/Dockerfile#L16-L17)).
  The necessary configurations done by the `docker container` will be
 stored in those directories and will persist even if the container stops. Docker
 will store the contents of these directories (located in the container) in
@@ -142,7 +142,7 @@ $ docker create \
        --device /dev/usb \
        -e CUPSADMIN="admin" \
        -e CUPSPASSWORD="password" \
-       tigerj/cups-airprint
+       nikoogle/cups-airprint
 ```
 
 Follow this with `docker start` and your cups/airprint printer is running:
@@ -195,8 +195,8 @@ optionally use [docker-compose](https://docs.docker.com/compose/) to set up your
 image. Just download the repo and run it like so:
 
 ```
-git clone https://github.com/RagingTiger/docker-cups-airprint
-cd docker-cups-airprint
+git clone https://github.com/nstankov-bg/cups-airprint
+cd cups-airprint
 docker-compose up
 ```
 
@@ -212,9 +212,9 @@ If you would like to build the image yourself (locally), pull down the repo and
 run the `docker build` command as follows:
 
 ```
-git clone https://github.com/RagingTiger/docker-cups-airprint
-cd docker-cups-airprint
-docker build -t tigerj/cups-airprint .
+git clone https://github.com/nstankov-bg/cups-airprint
+cd cups-airprint
+docker build -t nikoogle/cups-airprint .
 ```
 
 Follow this with a [docker run](#drun) or [docker create](dcreate) to deploy
@@ -241,12 +241,12 @@ configuration for this same reason
 
 Here we are going to discuss the most **common problems** that users have when
 trying to setup and configure their printer to work with the
-**tigerj/cups-airprint** image.
+**nikoogle/cups-airprint** image.
 
 ### <a name="missing-driver"></a> [Missing Printer Driver](#toc)
 
 As you might imagine this is **the most common** problem users have when setting
-up their printers. While the **tigerj/cups-airprint** image possesses
+up their printers. While the **nikoogle/cups-airprint** image possesses
 **multiple printer drivers**, it most likely **does not** have every driver for
 every printer. This issue can be resolved as follows:
 
@@ -255,11 +255,11 @@ every printer. This issue can be resolved as follows:
 
 ### <a name="driver-version"></a> [Driver Version](#toc)
 
-Sometimes the right printer driver is installed in the **tigerj/cups-airprint**
+Sometimes the right printer driver is installed in the **nikoogle/cups-airprint**
 Docker image, but the **version** is not current. This issue may require one of
 two choices to resolve:
 
-* Download the **docker-cups-airprint** git repo and build a fresh image
+* Download the **cups-airprint** git repo and build a fresh image
   * This will pull the most recent versions of the printer driver from the package
     manager.
 
