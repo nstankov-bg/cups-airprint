@@ -4,6 +4,8 @@ Updating to latest Cups, because my printer hates me: Canon G1220 (got it to wor
 
 Works on a Raspberry Pi 4B, would not do it on a Pi Zero Wv1, too slow.
 
+# Build Info
+![Docker Build](https://github.com/nstankov-bg/cups-airprint/actions/workflows/docker-image.yml/badge.svg)
 # Updated
 
 Version CUPS 2.3.3op2, using Debian11-slim.
