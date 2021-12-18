@@ -119,7 +119,7 @@ Docker volumes
 
 * **Notes**: The `Dockerfile` explicitly sets volumes at `/config` and
 `/services` (see
-[these lines](https://github.com/RagingTiger/docker-cups-airprint/blob/2a30b6690a08262fb64375b74f07ab7b3f77ec4a/Dockerfile#L16-L17)).
+[these lines](https://github.com/nstankov-bg/cups-airprint/blob/2a30b6690a08262fb64375b74f07ab7b3f77ec4a/Dockerfile#L16-L17)).
  The necessary configurations done by the `docker container` will be
 stored in those directories and will persist even if the container stops. Docker
 will store the contents of these directories (located in the container) in
@@ -195,7 +195,7 @@ optionally use [docker-compose](https://docs.docker.com/compose/) to set up your
 image. Just download the repo and run it like so:
 
 ```
-git clone https://github.com/RagingTiger/docker-cups-airprint
+git clone https://github.com/nstankov-bg/cups-airprint
 cd docker-cups-airprint
 docker-compose up
 ```
@@ -212,7 +212,7 @@ If you would like to build the image yourself (locally), pull down the repo and
 run the `docker build` command as follows:
 
 ```
-git clone https://github.com/RagingTiger/docker-cups-airprint
+git clone https://github.com/nstankov-bg/cups-airprint
 cd docker-cups-airprint
 docker build -t nikoogle/cups-airprint .
 ```
