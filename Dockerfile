@@ -21,8 +21,7 @@ RUN apt-get update && apt-get install -y \
 	openprinting-ppds \
 	hpijs-ppds \
 	hp-ppd \
-	cups-backend-bjnp \
-&& rm -rf /var/lib/apt/lists/*
+	cups-backend-bjnp
 
 # This will use port 631
 EXPOSE 631

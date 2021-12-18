@@ -1,45 +1,49 @@
 # Forked
+
 Updating to latest Cups, because my printer hates me: Canon G1220 (got it to work, yay)
 
 Works on a Raspberry Pi 4B, would not do it on a Pi Zero Wv1, too slow.
 
-# Updated 
+# Updated
 
 Version CUPS 2.3.3op2, using Debian11-slim.
 
 # Multi-Arch
+
 * linux/amd64
 * linux/arm64
 * linux/arm/v7
 
-
 # <a name="toc"></a> Table of Contents
+
 * [About](#about)
 * [Intro](#intro)
 * [Multi-arch Image](#multi-arch)
 * [Getting Started](#start)
-  + [Docker Run](#drun)
-  + [Docker Create](#dcreate)
-    + [Parameters](#dparams)
-  + [Docker Compose](#dcompose)
-  + [Docker Build](#dbuild)
+  * [Docker Run](#drun)
+  * [Docker Create](#dcreate)
+    * [Parameters](#dparams)
+  * [Docker Compose](#dcompose)
+  * [Docker Build](#dbuild)
 * [Using](#using)
 * [Notes](#notes)
 * [Trouble Shooting](#trouble)
-  + [Missing Printer Driver](#missing-driver)
-  + [Driver Version](#driver-version)
-
+  * [Missing Printer Driver](#missing-driver)
+  * [Driver Version](#driver-version)
 
 # <a name="about"></a> [About](#toc)
+
 Modified copy of source code at:
-https://github.com/quadportnick/docker-cups-airprint
+<https://github.com/quadportnick/docker-cups-airprint>
 
 # <a name="intro"></a> [Intro](#toc)
+
 This Ubuntu-based Docker image runs a CUPS instance that is meant as an AirPrint
 relay for printers that are already on the network but not AirPrint capable.
 The local Avahi will be utilized for advertising the printers on the network.
 
 # <a name="multi-arch"></a> [Multi-arch Image](#toc)
+
 The below commands reference a
 [Docker Manifest List](https://docs.docker.com/engine/reference/commandline/manifest/)
 at [`tigerj/cups-airprint`](https://hub.docker.com/r/tigerj/cups-airprint)
@@ -55,12 +59,15 @@ target hardware is a **Raspberry Pi Zero** or similar `arm 6` architecture, this
 image will not run.
 
 # <a name="start"></a> [Getting Started](#toc)
+
 This section will give an overview of the essential options/arguments to pass
 to docker to successfully run containers from the `tigerj/cups-airprint` docker
 image.
 
 ## <a name="drun"></a> [Docker Run](#toc)
+
 To simply do a quick and dirty run of the cups/airprint container:
+
 ```bash
 #Buildx
 docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t nikoogle/cups-airprint:latest --push .
@@ -91,20 +98,24 @@ docker-compose up -d
 ```
 
 To stop the container simply run:
+
 ```
-$ docker stop cups
+docker stop cups
 ```
+
 To remove the conainer simply run:
+
 ```
-$ docker rm cups
+docker rm cups
 ```
+
 **WARNING**: Be aware that deleting the container (i.e. `cups` in the example)
 will permanently delete the data that `docker volume` is storing for you.
 If you want to permanently persist this data, see the `docker create` example
 [below](#create). Continue reading the *Notes* section for more details about
 Docker volumes
 
-+ **Notes**: The `Dockerfile` explicitly sets volumes at `/config` and
+* **Notes**: The `Dockerfile` explicitly sets volumes at `/config` and
 `/services` (see
 [these lines](https://github.com/RagingTiger/docker-cups-airprint/blob/2a30b6690a08262fb64375b74f07ab7b3f77ec4a/Dockerfile#L16-L17)).
  The necessary configurations done by the `docker container` will be
@@ -114,7 +125,9 @@ will store the contents of these directories (located in the container) in
 [Docker Volumes](https://docs.docker.com/storage/volumes/)).
 
 ## <a name="dcreate"></a> [Docker Create](#toc)
+
 Creating a container is often more desirable than directly running it:
+
 ```
 $ docker create \
        --name=cups \
@@ -129,20 +142,26 @@ $ docker create \
        -e CUPSPASSWORD="password" \
        tigerj/cups-airprint
 ```
+
 Follow this with `docker start` and your cups/airprint printer is running:
+
 ```
-$ docker start cups
-```
-To stop the container simply run:
-```
-$ docker stop cups
-```
-To remove the conainer simply run:
-```
-$ docker rm cups
+docker start cups
 ```
 
-+ **Notes**: As mentioned in the *Notes* subsection of the [Run](#run) section,
+To stop the container simply run:
+
+```
+docker stop cups
+```
+
+To remove the conainer simply run:
+
+```
+docker rm cups
+```
+
+* **Notes**: As mentioned in the *Notes* subsection of the [Run](#run) section,
 the `Dockerfile` explicitly declares two volumes at `/config` and `/services`
 inside the container as mount points. Here we actually override the default
 use of Docker's innate volume management system and declare our own path on the
@@ -153,6 +172,7 @@ directories to `~/airprint_data/config` and `~/airprint_data/services`
 respectively, but these could just as well be anywhere on your file system.
 
 ### <a name="dparams"></a> [Parameters](#toc)
+
 * `--name`: gives the container a name making it easier to work with/on (e.g.
   `cups`)
 * `--restart`: restart policy for how to handle restarts (e.g. `always` restart)
@@ -167,14 +187,17 @@ respectively, but these could just as well be anywhere on your file system.
 * `--device /dev/usb`: device mounted for interacting with USB printers
 
 ## <a name="dcompose"></a> [Docker Compose](#toc)
+
 If you don't want to type out these long **Docker** commands, you could
 optionally use [docker-compose](https://docs.docker.com/compose/) to set up your
 image. Just download the repo and run it like so:
+
 ```
-$ git clone https://github.com/RagingTiger/docker-cups-airprint
-$ cd docker-cups-airprint
-$ docker-compose up
+git clone https://github.com/RagingTiger/docker-cups-airprint
+cd docker-cups-airprint
+docker-compose up
 ```
+
 NOTE: This compose file is made with `USB` printers in mind and like the above
 commands has `device` mounts for `USB` printers. If you don't have a `USB`
 printer you may want to comment these out. Also the `config/services` data will
@@ -182,25 +205,30 @@ be saved to the users `$HOME` directory. Again you may want to edit this to
 your own liking.
 
 ## <a name="dbuild"></a> [Docker Build](#toc)
+
 If you would like to build the image yourself (locally), pull down the repo and
 run the `docker build` command as follows:
+
 ```
-$ git clone https://github.com/RagingTiger/docker-cups-airprint
-$ cd docker-cups-airprint
-$ docker build -t tigerj/cups-airprint .
+git clone https://github.com/RagingTiger/docker-cups-airprint
+cd docker-cups-airprint
+docker build -t tigerj/cups-airprint .
 ```
+
 Follow this with a [docker run](#drun) or [docker create](dcreate) to deploy
 your container and your **cups-airprint** server is ready to be configured and
 [used](#using).
 
 ## <a name="using"></a> [Using](#toc)
-CUPS will be configurable at http://localhost:631 using the
+
+CUPS will be configurable at <http://localhost:631> using the
 CUPSADMIN/CUPSPASSWORD when you do something administrative.
 
 If the `/services` volume isn't mapping to `/etc/avahi/services` then you will
 have to manually copy the .service files to that path at the command line.
 
 ## <a name="notes"></a> [Notes](#toc)
+
 * CUPS doesn't write out `printers.conf` immediately when making changes even
 though they're live in CUPS. Therefore it will take a few moments before the
 services files update
@@ -208,28 +236,31 @@ services files update
 configuration for this same reason
 
 ## <a name="trouble"></a> [Trouble Shooting](#toc)
+
 Here we are going to discuss the most **common problems** that users have when
 trying to setup and configure their printer to work with the
 **tigerj/cups-airprint** image.
 
 ### <a name="missing-driver"></a> [Missing Printer Driver](#toc)
+
 As you might imagine this is **the most common** problem users have when setting
 up their printers. While the **tigerj/cups-airprint** image possesses
 **multiple printer drivers**, it most likely **does not** have every driver for
 every printer. This issue can be resolved as follows:
 
-+ Figure out what printer driver you need, open an issue about missing driver,
+* Figure out what printer driver you need, open an issue about missing driver,
   necessary package containing said driver will be added to **Dockerfile**.
 
 ### <a name="driver-version"></a> [Driver Version](#toc)
+
 Sometimes the right printer driver is installed in the **tigerj/cups-airprint**
 Docker image, but the **version** is not current. This issue may require one of
 two choices to resolve:
 
-+ Download the **docker-cups-airprint** git repo and build a fresh image
-  + This will pull the most recent versions of the printer driver from the package
+* Download the **docker-cups-airprint** git repo and build a fresh image
+  * This will pull the most recent versions of the printer driver from the package
     manager.
 
-+ Download driver **DIRECTLY** from the manufacturer and add it to the image
-  + If building a fresh image does not update the version of the driver, then
+* Download driver **DIRECTLY** from the manufacturer and add it to the image
+  * If building a fresh image does not update the version of the driver, then
     you will need the most recent printer driver from the manufacturer.
