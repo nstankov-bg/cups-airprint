@@ -1,7 +1,7 @@
 version: "2"
 services:
   cups:
-    image: tigerj/cups-airprint:latest
+    build: .
     container_name: cups
     network_mode: host
     restart: unless-stopped
