@@ -36,7 +36,7 @@ Version CUPS 2.3.3op2, using Debian11-slim.
 # <a name="about"></a> [About](#toc)
 
 Modified copy of source code at:
-<https://github.com/quadportnick/docker-cups-airprint>
+<https://github.com/RagingTiger/cups-airprint>
 
 # <a name="intro"></a> [Intro](#toc)
 
@@ -196,7 +196,7 @@ image. Just download the repo and run it like so:
 
 ```
 git clone https://github.com/nstankov-bg/cups-airprint
-cd docker-cups-airprint
+cd cups-airprint
 docker-compose up
 ```
 
@@ -213,7 +213,7 @@ run the `docker build` command as follows:
 
 ```
 git clone https://github.com/nstankov-bg/cups-airprint
-cd docker-cups-airprint
+cd cups-airprint
 docker build -t nikoogle/cups-airprint .
 ```
 
@@ -259,7 +259,7 @@ Sometimes the right printer driver is installed in the **nikoogle/cups-airprint*
 Docker image, but the **version** is not current. This issue may require one of
 two choices to resolve:
 
-* Download the **docker-cups-airprint** git repo and build a fresh image
+* Download the **cups-airprint** git repo and build a fresh image
   * This will pull the most recent versions of the printer driver from the package
     manager.
 
