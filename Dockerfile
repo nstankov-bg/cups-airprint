@@ -1,5 +1,5 @@
 # base image
-FROM ubuntu:jammy
+FROM debian:bullseye-slim
 
 # label with HEAD commit if given
 ARG GIT_COMMIT=unspecified

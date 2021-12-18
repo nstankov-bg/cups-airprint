@@ -13,7 +13,7 @@ services:
       - ./services:/services
     devices:
       - /dev/bus:/dev/bus
-      - /dev/usb:/dev/usb
+      # - /dev/usb:/dev/usb
     environment:
       - CUPSADMIN=admin
       - CUPSPASSWORD=password

@@ -1,6 +1,17 @@
 # Forked
-Updating to latest Cups, because my printer hates me: Canon G1220
-If it works for you, gimme a star.
+Updating to latest Cups, because my printer hates me: Canon G1220 (got it to work, yay)
+
+Works on a Raspberry Pi 4B, would not do it on a Pi Zero Wv1, too slow.
+
+# Updated 
+
+Version CUPS 2.3.3op2, using Debian11-slim.
+
+# Multi-Arch
+* linux/amd64
+* linux/arm64
+* linux/arm/v7
+
 
 # <a name="toc"></a> Table of Contents
 * [About](#about)
@@ -50,10 +61,19 @@ image.
 
 ## <a name="drun"></a> [Docker Run](#toc)
 To simply do a quick and dirty run of the cups/airprint container:
+```bash
+#Buildx
+docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t nikoogle/cups-airprint:latest --push .
 ```
-$ docker build -t nikoogle/cups-airprint:latest .
 
-$ docker run \
+```bash
+#Good 'Ol Docker
+docker build -t nikoogle/cups-airprint:latest .
+```
+
+```bash
+#Docker Run
+docker run \
        -d \
        --name=cups \
        --net=host \
@@ -64,6 +84,12 @@ $ docker run \
        -e CUPSPASSWORD="password" \
        nikoogle/cups-airprint:latest
 ```
+
+```bash
+#Docker-Compose
+docker-compose up -d
+```
+
 To stop the container simply run:
 ```
 $ docker stop cups
