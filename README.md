@@ -48,7 +48,7 @@ The local Avahi will be utilized for advertising the printers on the network.
 
 The below commands reference a
 [Docker Manifest List](https://docs.docker.com/engine/reference/commandline/manifest/)
-at [`tigerj/cups-airprint`](https://hub.docker.com/r/tigerj/cups-airprint)
+at [`nikoogle/cups-airprint`](https://hub.docker.com/r/nikoogle/cups-airprint)
 built using Docker's
 [BuildKit](https://docs.docker.com/develop/develop-images/build_enhancements/).
 Simply running commands using this image will pull
@@ -63,7 +63,7 @@ image will not run.
 # <a name="start"></a> [Getting Started](#toc)
 
 This section will give an overview of the essential options/arguments to pass
-to docker to successfully run containers from the `tigerj/cups-airprint` docker
+to docker to successfully run containers from the `nikoogle/cups-airprint` docker
 image.
 
 ## <a name="drun"></a> [Docker Run](#toc)
@@ -142,7 +142,7 @@ $ docker create \
        --device /dev/usb \
        -e CUPSADMIN="admin" \
        -e CUPSPASSWORD="password" \
-       tigerj/cups-airprint
+       nikoogle/cups-airprint
 ```
 
 Follow this with `docker start` and your cups/airprint printer is running:
@@ -214,7 +214,7 @@ run the `docker build` command as follows:
 ```
 git clone https://github.com/RagingTiger/docker-cups-airprint
 cd docker-cups-airprint
-docker build -t tigerj/cups-airprint .
+docker build -t nikoogle/cups-airprint .
 ```
 
 Follow this with a [docker run](#drun) or [docker create](dcreate) to deploy
@@ -241,12 +241,12 @@ configuration for this same reason
 
 Here we are going to discuss the most **common problems** that users have when
 trying to setup and configure their printer to work with the
-**tigerj/cups-airprint** image.
+**nikoogle/cups-airprint** image.
 
 ### <a name="missing-driver"></a> [Missing Printer Driver](#toc)
 
 As you might imagine this is **the most common** problem users have when setting
-up their printers. While the **tigerj/cups-airprint** image possesses
+up their printers. While the **nikoogle/cups-airprint** image possesses
 **multiple printer drivers**, it most likely **does not** have every driver for
 every printer. This issue can be resolved as follows:
 
@@ -255,7 +255,7 @@ every printer. This issue can be resolved as follows:
 
 ### <a name="driver-version"></a> [Driver Version](#toc)
 
-Sometimes the right printer driver is installed in the **tigerj/cups-airprint**
+Sometimes the right printer driver is installed in the **nikoogle/cups-airprint**
 Docker image, but the **version** is not current. This issue may require one of
 two choices to resolve:
 
