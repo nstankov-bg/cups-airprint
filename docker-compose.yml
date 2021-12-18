@@ -6,6 +6,7 @@ services:
     container_name: cups
     network_mode: host
     restart: unless-stopped
+    privileged: true
     volumes:
       - /var/run/dbus:/var/run/dbus
       - ./config:/config
