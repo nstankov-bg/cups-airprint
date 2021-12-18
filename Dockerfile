@@ -1,5 +1,5 @@
 # base image
-FROM ubuntu:xenial
+FROM ubuntu:jammy
 
 # label with HEAD commit if given
 ARG GIT_COMMIT=unspecified
