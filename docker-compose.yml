@@ -2,7 +2,7 @@ version: "2"
 services:
   cups:
     # build: .
-    image: nikoogle/cups-airprint:latest
+    image: nikoogle/cups-airprint:master
     container_name: cups
     network_mode: host
     restart: unless-stopped
