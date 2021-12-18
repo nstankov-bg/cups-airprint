@@ -7,8 +7,8 @@ services:
     restart: unless-stopped
     volumes:
       - /var/run/dbus:/var/run/dbus
-      - ~/airprint_data/config:/config
-      - ~/airprint_data/services:/services
+      - ./config:/config
+      - ./services:/services
     devices:
       - /dev/bus:/dev/bus
       - /dev/usb:/dev/usb
