@@ -1,5 +1,6 @@
-# Archived
-No further updates to the repository will be made at this time. Please see the _forks_ for any possible solutions to your specific use case.
+# Forked
+Updating to latest Cups, because my printer hates me: Canon G1220
+If it works for you, gimme a star.
 
 # <a name="toc"></a> Table of Contents
 * [About](#about)
