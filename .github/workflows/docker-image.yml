@@ -2,9 +2,9 @@ name: Build Docker Image
 
 on:
   push:
-    branches: [ master, g1220-v1]
-  pull_request:
-    branches: [ master, g1220-v1]
+    branches:
+      - master
+      - g1220-v1
 jobs:
   build:
     runs-on: ubuntu-latest
