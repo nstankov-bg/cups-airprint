@@ -5,6 +5,9 @@ FROM ubuntu:jammy
 ARG GIT_COMMIT=unspecified
 LABEL git_commit=$GIT_COMMIT
 
+ARG DEBIAN_FRONTEND=noninteractive
+ENV DEBIAN_FRONTEND=noninteractive 
+
 # Install the packages we need. Avahi will be included
 RUN apt-get update && apt-get install -y \
 	cups \
@@ -18,7 +21,6 @@ RUN apt-get update && apt-get install -y \
 	openprinting-ppds \
 	hpijs-ppds \
 	hp-ppd \
-	python-cups \
 	cups-backend-bjnp \
 && rm -rf /var/lib/apt/lists/*
 
