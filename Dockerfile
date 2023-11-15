@@ -1,5 +1,5 @@
 # base image
-FROM debian:bullseye-slim
+FROM debian:11.6-slim
 
 # label with HEAD commit if given
 ARG GIT_COMMIT=unspecified
