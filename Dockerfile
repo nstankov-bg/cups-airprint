@@ -1,5 +1,5 @@
 # base image
-FROM debian:11.6-slim
+FROM debian:11.11-slim
 
 # label with HEAD commit if given
 ARG GIT_COMMIT=unspecified
